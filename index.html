@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arash Mohammaddoust — Brand Experience Technologist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #2ABFBF;
+  --teal-deep: #1A8F8F;
+  --dark: #1A1D23;
+  --darker: #12141A;
+  --darkest: #0B0D11;
+  --light: #E0E4E8;
+  --muted: #94A0B2;
+  --white: #F5F7FA;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--darkest);
+  color: var(--light);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+.side-nav {
+  position:fixed; right:2rem; top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:1rem; z-index:100;
+}
+.side-nav a {
+  width:10px; height:10px; border-radius:50%; background:var(--muted);
+  opacity:.3; transition:all .3s; display:block; text-decoration:none;
+}
+.side-nav a:hover,.side-nav a.active { background:var(--teal); opacity:1; transform:scale(1.4); }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:4rem 6vw 6rem; position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; top:-30%; right:-15%;
+  width:70vw; height:70vw; border-radius:50%;
+  background:radial-gradient(circle, rgba(42,191,191,.10) 0%, transparent 70%);
+  pointer-events:none; animation:pulseGlow 8s ease-in-out infinite;
+}
+@keyframes pulseGlow { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.08);opacity:1} }
+
+.hero-tag {
+  font-size:.8rem; letter-spacing:.25em; text-transform:uppercase; font-weight:500;
+  color:var(--teal); margin-bottom:1.5rem;
+  opacity:0; animation:fadeUp .8s ease forwards .3s;
+}
+.hero h1 {
+  font-family:var(--font-display); font-weight:500;
+  font-size:clamp(2.8rem, 7vw, 6.5rem); line-height:1.05;
+  color:var(--white); margin-bottom:.4rem;
+  opacity:0; animation:fadeUp .8s ease forwards .5s;
+}
+.hero h1 em { font-style:italic; color:var(--teal); font-weight:400; }
+.hero-aka {
+  font-family:var(--font-display); font-style:italic;
+  font-size:clamp(.95rem, 1.8vw, 1.3rem); color:var(--muted);
+  margin-bottom:1.2rem; opacity:0; animation:fadeUp .8s ease forwards .6s;
+}
+.hero-subtitle {
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(1.1rem, 2.2vw, 1.8rem); color:var(--muted); margin-bottom:2.5rem;
+  opacity:0; animation:fadeUp .8s ease forwards .7s;
+}
+.hero-summary {
+  max-width:620px; font-size:1.05rem; line-height:1.8; color:var(--muted); font-weight:300;
+  opacity:0; animation:fadeUp .8s ease forwards .9s;
+}
+.hero-stats {
+  display:flex; gap:3rem; margin-top:3rem;
+  opacity:0; animation:fadeUp .8s ease forwards 1.1s;
+}
+.stat-number { font-family:var(--font-display); font-size:2.5rem; color:var(--teal); line-height:1; }
+.stat-label { font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.3rem; font-weight:400; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+/* SECTIONS */
+section { padding:6rem 6vw; position:relative; }
+.section-label {
+  font-size:.75rem; letter-spacing:.25em; text-transform:uppercase; font-weight:500;
+  color:var(--teal); margin-bottom:1rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.section-label::before { content:''; width:40px; height:1px; background:var(--teal); }
+.section-title {
+  font-family:var(--font-display); font-size:clamp(1.8rem, 3.5vw, 3rem); font-weight:500;
+  color:var(--white); margin-bottom:3rem;
+}
+.section-divider { width:100%; height:1px; background:linear-gradient(to right, transparent, rgba(42,191,191,.2), transparent); }
+
+/* TIMELINE */
+.timeline { position:relative; padding-left:3rem; }
+.timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom, var(--teal), transparent); }
+.timeline-item { position:relative; margin-bottom:3.5rem; opacity:0; transform:translateY(20px); transition:all .6s ease; }
+.timeline-item.visible { opacity:1; transform:translateY(0); }
+.timeline-item::before {
+  content:''; position:absolute; left:-3rem; top:.6rem;
+  width:8px; height:8px; border-radius:50%; background:var(--teal);
+  box-shadow:0 0 12px rgba(42,191,191,.5); transform:translateX(-50%);
+}
+.timeline-date { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); margin-bottom:.4rem; font-weight:500; }
+.timeline-role { font-family:var(--font-display); font-size:1.35rem; color:var(--white); margin-bottom:.2rem; font-weight:500; }
+.timeline-company { font-size:.95rem; color:var(--muted); margin-bottom:.8rem; font-weight:400; }
+.timeline-desc { font-size:.95rem; line-height:1.7; color:var(--muted); max-width:560px; font-weight:300; }
+.timeline-desc li { margin-bottom:.35rem; list-style:none; position:relative; padding-left:1rem; }
+.timeline-desc li::before { content:'—'; position:absolute; left:0; color:var(--teal-deep); }
+
+/* PROJECT GRID */
+.projects-section { background:var(--darker); }
+.portfolio-split { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+.portfolio-col h3 {
+  font-family:var(--font-display); font-size:1.5rem; color:var(--white); margin-bottom:.5rem; font-weight:500;
+}
+.portfolio-col .col-desc { font-size:.9rem; color:var(--muted); margin-bottom:1.5rem; font-weight:300; line-height:1.6; }
+
+.projects-grid { display:grid; grid-template-columns:1fr; gap:.75rem; }
+.project-card {
+  background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06);
+  border-radius:8px; padding:1rem 1.1rem; transition:all .3s;
+  cursor:default; position:relative; overflow:hidden;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.project-card::before {
+  content:''; position:absolute; top:0; left:0; width:3px; height:0;
+  background:var(--teal); transition:height .4s; border-radius:0 0 3px 0;
+}
+.project-card:hover { border-color:rgba(42,191,191,.25); background:rgba(42,191,191,.03); transform:translateX(4px); }
+.project-card:hover::before { height:100%; }
+.project-card h4 { font-family:var(--font-display); font-size:1rem; color:var(--white); font-weight:500; }
+.project-card .p-cat { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--teal-deep); font-weight:500; text-align:right; white-space:nowrap; margin-left:1rem; }
+
+/* FEATURED */
+.featured-card {
+  background:rgba(42,191,191,.04); border:1px solid rgba(42,191,191,.15);
+  border-radius:10px; padding:1.5rem; margin-bottom:1rem;
+  transition:all .3s;
+}
+.featured-card:hover { border-color:rgba(42,191,191,.35); background:rgba(42,191,191,.06); }
+.featured-card h4 { font-family:var(--font-display); font-size:1.15rem; color:var(--white); margin-bottom:.3rem; font-weight:500; }
+.featured-card .f-tag { font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:.6rem; display:block; font-weight:500; }
+.featured-card p { font-size:.88rem; color:var(--muted); line-height:1.6; font-weight:300; }
+
+/* SKILLS */
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; }
+.skill-card {
+  background:rgba(255,255,255,.03); border:1px solid rgba(42,191,191,.1);
+  border-radius:12px; padding:1.8rem 1.5rem; transition:all .4s; position:relative; overflow:hidden;
+}
+.skill-card::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(42,191,191,.08), transparent);
+  opacity:0; transition:opacity .4s;
+}
+.skill-card:hover { border-color:rgba(42,191,191,.35); transform:translateY(-4px); }
+.skill-card:hover::before { opacity:1; }
+.skill-card h3 { font-family:var(--font-display); font-size:1.15rem; color:var(--white); margin-bottom:.6rem; position:relative; font-weight:500; }
+.skill-card p { font-size:.88rem; color:var(--muted); line-height:1.6; position:relative; font-weight:300; }
+.skill-icon { font-size:1.4rem; margin-bottom:.8rem; display:block; }
+
+/* EDUCATION */
+.education-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem; }
+.edu-card { padding:2rem; border-left:2px solid var(--teal); background:rgba(42,191,191,.03); }
+.edu-card h3 { font-family:var(--font-display); font-size:1.2rem; color:var(--white); margin-bottom:.25rem; font-weight:500; }
+.edu-card .date { font-size:.8rem; color:var(--teal); letter-spacing:.08em; margin-bottom:1rem; font-weight:500; }
+.edu-card p { font-size:.9rem; color:var(--muted); line-height:1.7; font-weight:300; }
+
+/* CONTACT */
+.contact-section { text-align:center; padding:8rem 6vw; }
+.contact-section .section-title { margin-bottom:1rem; }
+.contact-subtitle { color:var(--muted); margin-bottom:3rem; font-size:1.05rem; font-weight:300; }
+.contact-links { display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap; }
+.contact-link {
+  display:flex; align-items:center; gap:.6rem;
+  color:var(--light); text-decoration:none; font-size:.9rem; font-weight:400;
+  padding:.75rem 1.4rem; border:1px solid rgba(255,255,255,.1);
+  border-radius:8px; transition:all .3s;
+}
+.contact-link:hover { border-color:var(--teal); color:var(--teal); background:rgba(42,191,191,.05); }
+.contact-link svg { width:18px; height:18px; flex-shrink:0; }
+
+footer {
+  text-align:center; padding:2rem; font-size:.75rem; font-weight:400;
+  color:var(--muted); letter-spacing:.08em;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+.reveal { opacity:0; transform:translateY(25px); transition:all .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width:900px) {
+  .portfolio-split { grid-template-columns:1fr; gap:3rem; }
+}
+@media (max-width:768px) {
+  .hero { padding:3rem 5vw 4rem; }
+  section { padding:4rem 5vw; }
+  .side-nav { display:none; }
+  .timeline { padding-left:2rem; }
+  .timeline-item::before { left:-2rem; }
+  .skills-grid { grid-template-columns:1fr 1fr; }
+  .education-grid { grid-template-columns:1fr; }
+  .hero-stats { gap:2rem; flex-wrap:wrap; }
+}
+@media (max-width:480px) {
+  .skills-grid { grid-template-columns:1fr; }
+  .project-card { flex-direction:column; align-items:flex-start; }
+  .project-card .p-cat { margin-left:0; margin-top:.2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="side-nav">
+  <a href="#hero"></a><a href="#experience"></a><a href="#portfolio"></a>
+  <a href="#skills"></a><a href="#education"></a><a href="#contact"></a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-tag">Brand Experience Technologist</div>
+  <h1>Arash<br><em>Mohammaddoust</em></h1>
+  <p class="hero-aka">Bahram on paper — Arash everywhere else</p>
+  <p class="hero-subtitle">Where brand strategy meets immersive technology</p>
+  <p class="hero-summary">
+    From architectural blueprints to AI-generated commercials on national TV. I bridge 3D visualization, VFX, brand identity, and automation to craft experiences that resonate — turning complex ideas into tangible, memorable realities.
+  </p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Projects Delivered</div></div>
+    <div class="stat"><div class="stat-number">30+</div><div class="stat-label">Brands & Clients</div></div>
+    <div class="stat"><div class="stat-number">7+</div><div class="stat-label">Years Experience</div></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="section-label reveal">Experience</div>
+  <h2 class="section-title reveal">Professional Journey</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Jan 2025 — Present</div>
+      <div class="timeline-role">Digital Experience Designer & R&D Specialist</div>
+      <div class="timeline-company">Kanoon Iran Novin (Iran Novin Advertising Agency)</div>
+      <div class="timeline-desc"><ul>
+        <li>VR experiences in Unreal Engine for Fomento Café</li>
+        <li>Brand identity enhancement for X.Vision, Fun of Day, Nilito, Padra, Fomento, Orbital, Cheetoz, and Helio</li>
+        <li>AI-generated promotional videos and brand content</li>
+        <li>R&D in automation — ComfyUI brand identity workflows</li>
+        <li>Python API-based image generation application</li>
+        <li>Custom GPTs and AI tools for visual identity</li>
+        <li>AI training sessions for agency colleagues</li>
+      </ul></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Jul 2023 — Dec 2024</div>
+      <div class="timeline-role">3D Generalist & Design/Execution Specialist</div>
+      <div class="timeline-company">Arva Tools Distribution Company</div>
+      <div class="timeline-desc"><ul>
+        <li>Exhibition booths, dealership interiors, product models, motion graphics, VFX & CGI</li>
+        <li>Full VR virtual tour production — real photography, concept to delivery</li>
+        <li>Corporate booth design and interior decoration execution</li>
+      </ul></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2019 — 2023</div>
+      <div class="timeline-role">Phase 2 Draftsman, BIM Specialist, Site Supervisor</div>
+      <div class="timeline-company">Engineering Department of District 22, Tehran</div>
+      <div class="timeline-desc"><ul>
+        <li>Architectural drawings, BIM modeling, and As-Built documentation</li>
+        <li>On-site supervision — Hazrat Vali-Asr Clinic, Chitgar, Tehran</li>
+      </ul></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Ongoing</div>
+      <div class="timeline-role">Freelance — Brand & AI Creative</div>
+      <div class="timeline-company">Independent</div>
+      <div class="timeline-desc"><ul>
+        <li>AI-generated commercials for Avaktan (Jeanwest)</li>
+        <li>Brand identity experience books for Mobarakeh Steel & Isfahan Oil Refinery (EORC)</li>
+        <li>Visual identity, 3D, and automation across industries</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== PORTFOLIO ===== -->
+<section class="projects-section" id="portfolio">
+  <div class="section-label reveal">Portfolio</div>
+  <h2 class="section-title reveal">Projects & Work</h2>
+
+  <div class="portfolio-split reveal">
+
+    <!-- LEFT: Brand & Creative -->
+    <div class="portfolio-col">
+      <h3>Brand & Creative</h3>
+      <p class="col-desc">Brand identity systems, VFX, VR experiences, visual direction, and AI-generated content for brands across automotive, FMCG, industrial, and fashion.</p>
+
+      <div class="projects-grid">
+        <!-- Automotive -->
+        <div class="project-card"><h4>X.Vision</h4><span class="p-cat">Home Appliances · Brand</span></div>
+        <div class="project-card"><h4>XMOTORS</h4><span class="p-cat">Automotive · Brand</span></div>
+        <div class="project-card"><h4>XPENG</h4><span class="p-cat">Automotive · Brand</span></div>
+        <div class="project-card"><h4>Avatr</h4><span class="p-cat">Automotive · EV</span></div>
+        <div class="project-card"><h4>Binghatti × Benz</h4><span class="p-cat">Automotive · Luxury</span></div>
+        <div class="project-card"><h4>MANSORY</h4><span class="p-cat">Automotive · Luxury</span></div>
+        <!-- F&B / FMCG -->
+        <div class="project-card"><h4>Fomento Café</h4><span class="p-cat">F&B · VR · Brand</span></div>
+        <div class="project-card"><h4>Delizio Caffino</h4><span class="p-cat">F&B · Brand Strategy</span></div>
+        <div class="project-card"><h4>Espresso Lab</h4><span class="p-cat">F&B · Brand</span></div>
+        <div class="project-card"><h4>Cheetoz</h4><span class="p-cat">FMCG · Snack</span></div>
+        <div class="project-card"><h4>Do Ghazal</h4><span class="p-cat">FMCG · Tea</span></div>
+        <div class="project-card"><h4>Nilito</h4><span class="p-cat">FMCG · Brand</span></div>
+        <div class="project-card"><h4>Fun of Day</h4><span class="p-cat">FMCG · Brand</span></div>
+        <div class="project-card"><h4>Mihan (Mirax)</h4><span class="p-cat">FMCG · Dairy & Food</span></div>
+        <div class="project-card"><h4>Royal Joy</h4><span class="p-cat">F&B · Brand</span></div>
+        <!-- Brand Identity -->
+        <div class="project-card"><h4>Helio</h4><span class="p-cat">Digital Agency · Brand</span></div>
+        <div class="project-card"><h4>Padra</h4><span class="p-cat">Brand · Storyboard</span></div>
+        <div class="project-card"><h4>Orbital</h4><span class="p-cat">Brand Identity</span></div>
+        <div class="project-card"><h4>Orbital 09690</h4><span class="p-cat">After-Sales Service</span></div>
+        <div class="project-card"><h4>Aria Chic</h4><span class="p-cat">Fashion · Brand</span></div>
+        <div class="project-card"><h4>Avaktan (Jeanwest)</h4><span class="p-cat">Fashion · AI Commercial</span></div>
+        <div class="project-card"><h4>Modalal</h4><span class="p-cat">Brand Identity</span></div>
+        <div class="project-card"><h4>Shivaz</h4><span class="p-cat">Brand Identity</span></div>
+        <div class="project-card"><h4>Shima</h4><span class="p-cat">Brand Identity</span></div>
+        <div class="project-card"><h4>Mazyar</h4><span class="p-cat">Brand Identity</span></div>
+        <div class="project-card"><h4>Novin Air</h4><span class="p-cat">Aviation · Brand</span></div>
+        <div class="project-card"><h4>XPoint</h4><span class="p-cat">Brand · Touchpoint</span></div>
+        <div class="project-card"><h4>LCMan</h4><span class="p-cat">Brand Identity</span></div>
+        <div class="project-card"><h4>Zarkam</h4><span class="p-cat">Brand Identity</span></div>
+        <!-- Industrial -->
+        <div class="project-card"><h4>Mobarakeh Steel</h4><span class="p-cat">Steel · Brand Experience</span></div>
+        <div class="project-card"><h4>Isfahan Oil Refinery (EORC)</h4><span class="p-cat">Energy · Brand</span></div>
+        <div class="project-card"><h4>Technogym</h4><span class="p-cat">Fitness · Brand</span></div>
+        <div class="project-card"><h4>Maadiran</h4><span class="p-cat">Electronics · Brand</span></div>
+        <div class="project-card"><h4>Mammut</h4><span class="p-cat">Industrial · Brand</span></div>
+        <div class="project-card"><h4>PGPICC</h4><span class="p-cat">Petrochemical</span></div>
+        <!-- Architecture & Spatial -->
+        <div class="project-card"><h4>Mattar Bin Lahej</h4><span class="p-cat">Architecture</span></div>
+        <div class="project-card"><h4>Iranian Hospital Dubai</h4><span class="p-cat">Healthcare · Spatial</span></div>
+        <div class="project-card"><h4>Tangestan</h4><span class="p-cat">Spatial Design</span></div>
+        <div class="project-card"><h4>Arva Virtual Tour</h4><span class="p-cat">VR · Photography</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Development & Technology -->
+    <div class="portfolio-col">
+      <h3>Development & Technology</h3>
+      <p class="col-desc">AI-powered platforms, automation pipelines, full-stack applications, and R&D tools built at the intersection of design and engineering.</p>
+
+      <!-- Featured Projects -->
+      <div class="featured-card">
+        <span class="f-tag">Flagship R&D</span>
+        <h4>AIQ Studio — Detail Design Agent</h4>
+        <p>AI-driven pipeline converting 2D concept images into dimensioned blueprints (ISO 129-1), 3D meshes (.glb), material specs, section cuts, and exploded views. Bridges the concept-to-execution gap for designers and manufacturers.</p>
+      </div>
+
+      <div class="featured-card">
+        <span class="f-tag">Platform · In Development</span>
+        <h4>Bextudio Platform</h4>
+        <p>AI-powered brand strategy SaaS — multi-tenant system with 72-question brand assessment, RBAC, pgvector, Python Gateway, and Next.js frontend. Includes BexCube (legacy version, coming to GitHub soon).</p>
+      </div>
+
+      <div class="featured-card">
+        <span class="f-tag">Communication Platform</span>
+        <h4>BexChat</h4>
+        <p>Real-time chat, file transfer, and meetings platform for creative teams and brand collaboration.</p>
+      </div>
+
+      <div class="projects-grid" style="margin-top:1rem;">
+        <div class="project-card"><h4>IKCO Detail Design</h4><span class="p-cat">Automation · Iran Khodro</span></div>
+        <div class="project-card"><h4>ComfyUI Workflows</h4><span class="p-cat">AI · Image Gen</span></div>
+        <div class="project-card"><h4>Brand Automation Pipelines</h4><span class="p-cat">Workflow Automation</span></div>
+        <div class="project-card"><h4>UGC API Applications</h4><span class="p-cat">Content Gen · API</span></div>
+        <div class="project-card"><h4>Claude Code + Ollama</h4><span class="p-cat">AI · Local LLM</span></div>
+        <div class="project-card"><h4>Custom GPTs & AI Tools</h4><span class="p-cat">OpenAI · Visual Identity</span></div>
+        <div class="project-card"><h4>Python Image Gen API</h4><span class="p-cat">API · AI</span></div>
+        <div class="project-card"><h4>Class AI</h4><span class="p-cat">AI Training · Internal</span></div>
+        <div class="project-card"><h4>Barcelona</h4><span class="p-cat">Architecture · Web App</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="section-label reveal">Capabilities</div>
+  <h2 class="section-title reveal">Technical Toolkit</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><span class="skill-icon">✦</span><h3>Drafting & BIM</h3><p>AutoCAD, Revit — architectural drawings, BIM modeling, As-Built documentation, site supervision</p></div>
+    <div class="skill-card reveal"><span class="skill-icon">◎</span><h3>3D & Visualization</h3><p>Rhinoceros, 3ds Max, Blender — product modeling, exhibition design, CGI, virtual tours</p></div>
+    <div class="skill-card reveal"><span class="skill-icon">▲</span><h3>VFX & Motion</h3><p>Unreal Engine, Houdini, After Effects — VR experiences, motion graphics, visual effects</p></div>
+    <div class="skill-card reveal"><span class="skill-icon">◆</span><h3>Graphic & Identity</h3><p>Photoshop, Canva — brand identity systems, storyboards, visual direction</p></div>
+    <div class="skill-card reveal"><span class="skill-icon">⟐</span><h3>Automation & AI</h3><p>ComfyUI, Python, Custom GPTs — AI workflows, image generation, automation pipelines</p></div>
+    <div class="skill-card reveal"><span class="skill-icon">◇</span><h3>Web & App Dev</h3><p>JavaScript, HTML/CSS, Python — full-stack apps, platform development, API integration</p></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="section-label reveal">Education</div>
+  <h2 class="section-title reveal">Academic Foundation</h2>
+  <div class="education-grid">
+    <div class="edu-card reveal"><h3>Master's — Energy Architecture</h3><div class="date">2017 — 2019 · Energy Institute of Higher Education</div><p>Specialization in optimizing energy consumption. Thesis on brick façade systems as stone alternatives, backed by technical and economic analysis.</p></div>
+    <div class="edu-card reveal"><h3>Bachelor's — Architecture</h3><div class="date">2013 — 2016 · Islamic Azad University, South Tehran</div><p>Architectural styles, building functions, and user needs. Thesis: gaming center design as a competition and community hub.</p></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact-section" id="contact">
+  <div class="section-label" style="justify-content:center;">Get in Touch</div>
+  <h2 class="section-title">Let's Create <em style="font-family:var(--font-display);color:var(--teal);font-style:italic;">Together</em></h2>
+  <p class="contact-subtitle">Open to collaboration, freelance, and full-time opportunities</p>
+  <div class="contact-links">
+    <a href="mailto:bahram.mohammaddoust@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg>
+      bahram.mohammaddoust@gmail.com
+    </a>
+    <a href="tel:+989905335080" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +98 990 533 5080
+    </a>
+    <a href="https://github.com/arash-m-doust" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+
+<footer><p>© 2026 ARASH MOHAMMADDOUST — TEHRAN, IRAN</p></footer>
+
+<script>
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.08});
+document.querySelectorAll('.reveal,.timeline-item').forEach(el => obs.observe(el));
+
+const secs = document.querySelectorAll('section[id]');
+const dots = document.querySelectorAll('.side-nav a');
+window.addEventListener('scroll', () => {
+  let c = '';
+  secs.forEach(s => { if(scrollY >= s.offsetTop - 300) c = s.id; });
+  dots.forEach((d,i) => {
+    const ids = ['hero','experience','portfolio','skills','education','contact'];
+    d.classList.toggle('active', ids[i] === c);
+  });
+});
+</script>
+</body>
+</html>
