@@ -150,6 +150,10 @@ section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
 }
 .pub-status a { color: var(--accent); }
  
+/* BEXTUDIO RESEARCH */
+.aiq-feature.bextudio { border-color: var(--accent2); }
+.aiq-feature.bextudio .aiq-badge { background: var(--accent2); }
+ 
 /* EXPERIENCE */
 .exp-grid { display: grid; gap: 2rem; }
 .exp-item {
@@ -225,7 +229,6 @@ footer {
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
 
-/* کلاس‌هایی که توسط JS کنترل می‌شوند */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
  
@@ -375,8 +378,8 @@ footer {
       </div>
     </div>
  
-    <div class="aiq-feature reveal" style="border-color: var(--accent2);">
-      <span class="aiq-badge" style="background: var(--accent2);">Research Platform</span>
+    <div class="aiq-feature bextudio reveal">
+      <span class="aiq-badge">Research Platform</span>
       <h3>Bextudio — AI-Powered Brand Assessment</h3>
       <p class="aiq-desc">
         A multi-tenant SaaS platform investigating AI-assisted brand strategy through a structured 
@@ -527,7 +530,7 @@ footer {
     <div class="skill-group reveal">
       <div class="skill-icon">◇</div>
       <h4>Web & Application Dev</h4>
-      <p>JavaScript, HTML/CSS, Python, Django, Next.js — full-stack apps, platform development, API integration</p>
+      <p>Python, Django, HTML/CSS, Next.js — full-stack apps, platform development, API integration</p>
     </div>
   </div>
 </section>
@@ -568,9 +571,9 @@ footer {
   </p>
   <div class="contact-links reveal">
     <a href="mailto:bahram.mohammaddoust@gmail.com">Email</a>
-    <a href="https://arash-m-doust.github.io" target="_blank">Portfolio / GitHub</a>
+    <a href="https://bahram-m-doust.github.io" target="_blank">Portfolio</a>
+    <a href="https://github.com/Bahram-m-doust" target="_blank">GitHub</a>
     <a href="#">LinkedIn</a>
-    <a href="#">Download Academic CV</a>
   </div>
 </section>
  
@@ -579,33 +582,28 @@ footer {
 </footer>
 
 <script>
-  // منتظر می‌مانیم تا تمام کدهای HTML لود شوند
   document.addEventListener("DOMContentLoaded", function() {
     
-    // ۱. افکت Reveal برای زمانی که اسکرول می‌کنید
-    // IntersectionObserver ابزاری در جاوااسکریپت است که متوجه می‌شود چه زمانی یک المان وارد صفحه نمایش (Viewport) می‌شود.
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.15 // وقتی ۱۵ درصد از المان وارد صفحه شد، انیمیشن اجرا شود
+      threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active'); // کلاس اکتیو رو اضافه میکنه که باعث میشه Opacity بشه ۱
-          observer.unobserve(entry.target); // بعد از یکبار اجرا، دیگه رصدش نمیکنه که پرفورمنس بالا بمونه
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // تمام المان‌هایی که کلاس reveal دارند را پیدا کن و به Observer معرفی کن
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => {
       observer.observe(el);
     });
 
-    // ۲. تغییر رنگ لینک منو (Nav) بر اساس اسکرول
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul a');
 
@@ -615,7 +613,6 @@ footer {
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        // اگر اسکرول کاربر از یک سوم بالاییِ سکشن عبور کرد
         if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
           current = section.getAttribute('id');
         }
@@ -623,7 +620,6 @@ footer {
 
       navLinks.forEach(link => {
         link.classList.remove('active-link');
-        // اگر href لینک شامل آیدی سکشن فعلی بود، بهش کلاس اکتیو بده
         if (link.getAttribute('href').includes(current) && current !== '') {
           link.classList.add('active-link');
         }
