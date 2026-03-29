@@ -49,10 +49,10 @@ nav {
 nav .logo { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text2); text-transform: uppercase; }
 nav .logo span { color: var(--accent); }
 nav ul { display: flex; gap: 1.5rem; list-style: none; }
-nav ul a { color: var(--text2); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
-nav ul a:hover { color: var(--accent); }
-nav ul a.research-link { color: var(--accent); font-weight: 700; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 3px; }
-nav ul a.research-link:hover { background: var(--accent); color: #000; }
+nav ul a { color: var(--text2); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; transition: color 0.3s; }
+nav ul a:hover, nav ul a.active-link { color: var(--accent); }
+nav ul a.research-link { color: var(--accent); font-weight: 700; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 3px; transition: all 0.3s;}
+nav ul a.research-link:hover, nav ul a.research-link.active-link { background: var(--accent); color: #000; }
  
 /* HERO */
 .hero {
@@ -101,7 +101,7 @@ section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
 }
 .divider { width: 100%; height: 1px; background: var(--border); margin: 0 auto; }
  
-/* RESEARCH — MOST PROMINENT */
+/* RESEARCH */
 #research { background: var(--bg2); padding: 5rem 2rem; margin: 0; max-width: none; border-top: 2px solid var(--accent); border-bottom: 2px solid var(--accent); }
 #research .inner { max-width: 1200px; margin: 0 auto; }
 .research-statement {
@@ -221,9 +221,13 @@ footer {
 .seeking-text { font-size: 0.85rem; color: var(--text2); }
 .seeking-text strong { color: var(--accent); }
  
-/* ANIMATIONS */
+/* ANIMATIONS (CSS & JS REVEAL) */
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+/* کلاس‌هایی که توسط JS کنترل می‌شوند */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
  
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -251,8 +255,7 @@ footer {
   </ul>
 </nav>
  
-<!-- HERO -->
-<header class="hero">
+<header class="hero" id="home">
   <span class="hero-badge">Design Researcher & Technologist</span>
   <h1>Bahram <em>Mohammaddoust</em></h1>
   <p class="hero-sub">
@@ -277,13 +280,12 @@ footer {
   <div class="hero-line"></div>
 </header>
  
-<!-- RESEARCH — MOST PROMINENT SECTION -->
 <section id="research">
   <div class="inner">
-    <div class="section-label">Research</div>
-    <h2 class="section-title">Research Interests</h2>
+    <div class="section-label reveal">Research</div>
+    <h2 class="section-title reveal">Research Interests</h2>
     
-    <div class="research-statement">
+    <div class="research-statement reveal">
       My research explores <strong>AI-driven design pipelines</strong> that bridge the gap between 
       conceptual imagery and engineering documentation. I investigate how multimodal AI systems 
       can automate the translation of 2D concept renders into dimensioned technical drawings 
@@ -293,26 +295,25 @@ footer {
     </div>
  
     <div class="research-areas">
-      <div class="research-area">
+      <div class="research-area reveal">
         <h4>Human-AI Interaction in Design</h4>
         <p>How designers interact with AI-generated technical outputs. Evaluating trust, accuracy perception, and workflow integration of AI design agents.</p>
       </div>
-      <div class="research-area">
+      <div class="research-area reveal">
         <h4>Computational Design Pipelines</h4>
         <p>End-to-end systems connecting concept imagery to manufacturing documentation through VLM analysis, generative image models, and 3D reconstruction.</p>
       </div>
-      <div class="research-area">
+      <div class="research-area reveal">
         <h4>AI-Assisted Manufacturing Documentation</h4>
         <p>Automated generation of dimensioned blueprints, bill of materials, and fabrication specifications with regional standards compliance (ISO, ESMA).</p>
       </div>
-      <div class="research-area">
+      <div class="research-area reveal">
         <h4>Spatial Computing & XR</h4>
         <p>Virtual and extended reality experiences for architectural visualization, brand environments, and interactive spatial design evaluation.</p>
       </div>
     </div>
  
-    <!-- AIQ STUDIO FEATURE PROJECT -->
-    <div class="aiq-feature">
+    <div class="aiq-feature reveal">
       <span class="aiq-badge">Flagship R&D Project</span>
       <h3>AIQ Studio — Detail Design Agent</h3>
       <p class="aiq-desc">
@@ -374,8 +375,7 @@ footer {
       </div>
     </div>
  
-    <!-- BEXTUDIO RESEARCH -->
-    <div class="aiq-feature" style="border-color: var(--accent2);">
+    <div class="aiq-feature reveal" style="border-color: var(--accent2);">
       <span class="aiq-badge" style="background: var(--accent2);">Research Platform</span>
       <h3>Bextudio — AI-Powered Brand Assessment</h3>
       <p class="aiq-desc">
@@ -398,13 +398,12 @@ footer {
  
 <div class="divider"></div>
  
-<!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">Experience</div>
-  <h2 class="section-title">Professional Journey</h2>
+  <div class="section-label reveal">Experience</div>
+  <h2 class="section-title reveal">Professional Journey</h2>
   
   <div class="exp-grid">
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div class="exp-date">Jan 2025 — Present</div>
       <div class="exp-content">
         <h3>Digital Experience Designer & R&D Specialist</h3>
@@ -419,8 +418,8 @@ footer {
       </div>
     </div>
  
-    <div class="exp-item">
-      <div class="exp-date">Jul 2023 — Dec 2024</div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Jul 2023 — Mar 2025</div>
       <div class="exp-content">
         <h3>3D Generalist & Design/Execution Specialist</h3>
         <div class="exp-company">Arva Tools Distribution Company</div>
@@ -432,7 +431,7 @@ footer {
       </div>
     </div>
  
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div class="exp-date">2019 — 2023</div>
       <div class="exp-content">
         <h3>Phase 2 Draftsman, BIM Specialist, Site Supervisor</h3>
@@ -444,7 +443,7 @@ footer {
       </div>
     </div>
  
-    <div class="exp-item">
+    <div class="exp-item reveal">
       <div class="exp-date">Ongoing</div>
       <div class="exp-content">
         <h3>Freelance — Design Research & AI Creative</h3>
@@ -461,31 +460,31 @@ footer {
  
 <div class="divider"></div>
  
-<!-- PORTFOLIO -->
 <section id="portfolio">
-  <div class="section-label">Portfolio</div>
-  <h2 class="section-title">Selected Projects</h2>
+  <div class="section-label reveal">Portfolio</div>
+  <h2 class="section-title reveal">Selected Projects</h2>
   
-  <h3 style="font-size:0.85rem; color:var(--accent); margin-bottom:1.5rem; text-transform:uppercase; letter-spacing:0.1em;">Brand & Creative</h3>
-  <div class="port-grid">
+  <h3 class="reveal" style="font-size:0.85rem; color:var(--accent); margin-bottom:1.5rem; text-transform:uppercase; letter-spacing:0.1em;">Brand & Creative</h3>
+  <div class="port-grid reveal">
     <div class="port-item"><div class="port-cat">Automotive · Brand</div><h4>X.Vision</h4><p>Home appliances brand identity system</p></div>
     <div class="port-item"><div class="port-cat">Automotive · Brand</div><h4>XMOTORS / XPENG</h4><p>Automotive brand experience</p></div>
     <div class="port-item"><div class="port-cat">F&B · VR · Brand</div><h4>Fomento Café</h4><p>VR spatial brand experience in Unreal Engine</p></div>
     <div class="port-item"><div class="port-cat">F&B · Brand Strategy</div><h4>Delizio Caffino</h4><p>Comprehensive brand strategy + UAE market entry</p></div>
     <div class="port-item"><div class="port-cat">FMCG · Snack</div><h4>Cheetoz</h4><p>Brand identity and packaging system</p></div>
+    <div class="port-item"><div class="port-cat">Energy · Brand</div><h4>Petro Palayesh</h4><p>Experience Book & Agha Bahador AI Avatar</p></div>
     <div class="port-item"><div class="port-cat">Digital Agency · Brand</div><h4>Helio UAE</h4><p>Visual identity system — Chromatic Trinity law</p></div>
     <div class="port-item"><div class="port-cat">Fashion · AI</div><h4>Avakatan (Jeanwest)</h4><p>AI-generated commercial for national TV</p></div>
     <div class="port-item"><div class="port-cat">Steel · Brand</div><h4>Mobarakeh Steel</h4><p>Brand experience documentation</p></div>
     <div class="port-item"><div class="port-cat">Energy · Brand</div><h4>Isfahan Oil Refinery</h4><p>Brand identity experience book</p></div>
     <div class="port-item"><div class="port-cat">Petrochemical</div><h4>PGPICC / Pardis</h4><p>Brand city strategic framework</p></div>
-    <div class="port-item"><div class="port-cat">Fitness · Brand</div><h4>Technogym</h4><p>Visual identity documentation</p></div>
     <div class="port-item"><div class="port-cat">Healthcare</div><h4>Iranian Hospital Dubai</h4><p>Spatial design</p></div>
   </div>
  
-  <h3 style="font-size:0.85rem; color:var(--accent); margin:3rem 0 1.5rem; text-transform:uppercase; letter-spacing:0.1em;">Development & Technology</h3>
-  <div class="port-grid">
+  <h3 class="reveal" style="font-size:0.85rem; color:var(--accent); margin:3rem 0 1.5rem; text-transform:uppercase; letter-spacing:0.1em;">Development & Technology</h3>
+  <div class="port-grid reveal">
     <div class="port-item"><div class="port-cat">AI Pipeline · R&D</div><h4>AIQ Studio</h4><p>2D concept → technical blueprint + 3D mesh + BOM</p></div>
     <div class="port-item"><div class="port-cat">Platform · SaaS</div><h4>Bextudio Platform</h4><p>AI-powered brand strategy assessment system</p></div>
+    <div class="port-item"><div class="port-cat">UI / Backend</div><h4>BexInnovation Wizard UI</h4><p>Full-stack interface & logic development</p></div>
     <div class="port-item"><div class="port-cat">Communication</div><h4>Octara Hub</h4><p>Real-time chat, file transfer, meetings platform</p></div>
     <div class="port-item"><div class="port-cat">AI · Workflow</div><h4>ComfyUI Pipelines</h4><p>Brand identity automation workflows</p></div>
     <div class="port-item"><div class="port-cat">Automation · IKCO</div><h4>IKCO Detail Design</h4><p>Technical drawing automation for Iran Khodro</p></div>
@@ -495,67 +494,65 @@ footer {
  
 <div class="divider"></div>
  
-<!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">Capabilities</div>
-  <h2 class="section-title">Technical Toolkit</h2>
+  <div class="section-label reveal">Capabilities</div>
+  <h2 class="section-title reveal">Technical Toolkit</h2>
   
   <div class="skills-grid">
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <div class="skill-icon">✦</div>
       <h4>Drafting & BIM</h4>
       <p>AutoCAD, Revit — architectural drawings, BIM modeling, As-Built documentation, site supervision</p>
     </div>
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <div class="skill-icon">◎</div>
       <h4>3D & Visualization</h4>
       <p>Rhinoceros, 3ds Max, Blender — product modeling, exhibition design, CGI, virtual tours</p>
     </div>
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <div class="skill-icon">▲</div>
       <h4>VFX & Motion</h4>
       <p>Unreal Engine, Houdini, After Effects — VR experiences, motion graphics, visual effects</p>
     </div>
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <div class="skill-icon">◆</div>
       <h4>Design & Identity</h4>
       <p>Photoshop, Canva — brand identity systems, storyboards, visual direction</p>
     </div>
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <div class="skill-icon">⟐</div>
       <h4>Automation & AI</h4>
       <p>ComfyUI, Python, Custom GPTs — AI workflows, image generation, automation pipelines</p>
     </div>
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <div class="skill-icon">◇</div>
       <h4>Web & Application Dev</h4>
-      <p>JavaScript, HTML/CSS, Python, Next.js — full-stack apps, platform development, API integration</p>
+      <p>JavaScript, HTML/CSS, Python, Django, Next.js — full-stack apps, platform development, API integration</p>
     </div>
   </div>
 </section>
  
 <div class="divider"></div>
  
-<!-- EDUCATION -->
 <section id="education">
-  <div class="section-label">Education</div>
-  <h2 class="section-title">Academic Foundation</h2>
+  <div class="section-label reveal">Education</div>
+  <h2 class="section-title reveal">Academic Foundation</h2>
   
   <div class="edu-grid">
-    <div class="edu-item">
+    <div class="edu-item reveal">
       <div class="edu-year">2017 — 2019</div>
       <div>
         <h3>Master's — Energy Architecture</h3>
         <div class="edu-school">Energy Institute of Higher Education</div>
-        <p>Specialization in optimizing energy consumption. Thesis on brick façade systems as stone alternatives, backed by technical and economic analysis.</p>
+        <p>Graduated with a grade of 15. Specialization in optimizing energy consumption. Thesis on brick façade systems as stone alternatives, backed by technical and economic analysis.</p>
       </div>
     </div>
-    <div class="edu-item">
+    <div class="edu-item reveal">
       <div class="edu-year">2013 — 2016</div>
       <div>
         <h3>Bachelor's — Architecture</h3>
         <div class="edu-school">Islamic Azad University, South Tehran</div>
-        <p>Architectural styles, building functions, and user needs. Thesis: gaming center design as a competition and community hub.</p>
+        <p>Graduated with a grade of 15. Architectural styles, building functions, and user needs. Thesis: gaming center design as a competition and community hub.</p>
       </div>
     </div>
   </div>
@@ -563,16 +560,15 @@ footer {
  
 <div class="divider"></div>
  
-<!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">Get in Touch</div>
-  <div class="contact-line">Let's Create <em>Together</em></div>
-  <p style="color:var(--text2); margin-bottom:2rem; font-size:0.9rem;">
+  <div class="section-label reveal">Get in Touch</div>
+  <div class="contact-line reveal">Let's Create <em>Together</em></div>
+  <p class="reveal" style="color:var(--text2); margin-bottom:2rem; font-size:0.9rem;">
     Open to PhD positions, research collaborations, freelance, and full-time opportunities.
   </p>
-  <div class="contact-links">
+  <div class="contact-links reveal">
     <a href="mailto:bahram.mohammaddoust@gmail.com">Email</a>
-    <a href="https://github.com/Bahram-m-doust">GitHub</a>
+    <a href="https://arash-m-doust.github.io" target="_blank">Portfolio / GitHub</a>
     <a href="#">LinkedIn</a>
     <a href="#">Download Academic CV</a>
   </div>
@@ -581,6 +577,60 @@ footer {
 <footer>
   &copy; 2026 Bahram Mohammaddoust — Tehran, Iran
 </footer>
- 
+
+<script>
+  // منتظر می‌مانیم تا تمام کدهای HTML لود شوند
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    // ۱. افکت Reveal برای زمانی که اسکرول می‌کنید
+    // IntersectionObserver ابزاری در جاوااسکریپت است که متوجه می‌شود چه زمانی یک المان وارد صفحه نمایش (Viewport) می‌شود.
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15 // وقتی ۱۵ درصد از المان وارد صفحه شد، انیمیشن اجرا شود
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active'); // کلاس اکتیو رو اضافه میکنه که باعث میشه Opacity بشه ۱
+          observer.unobserve(entry.target); // بعد از یکبار اجرا، دیگه رصدش نمیکنه که پرفورمنس بالا بمونه
+        }
+      });
+    }, observerOptions);
+
+    // تمام المان‌هایی که کلاس reveal دارند را پیدا کن و به Observer معرفی کن
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // ۲. تغییر رنگ لینک منو (Nav) بر اساس اسکرول
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        // اگر اسکرول کاربر از یک سوم بالاییِ سکشن عبور کرد
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active-link');
+        // اگر href لینک شامل آیدی سکشن فعلی بود، بهش کلاس اکتیو بده
+        if (link.getAttribute('href').includes(current) && current !== '') {
+          link.classList.add('active-link');
+        }
+      });
+    });
+
+  });
+</script>
 </body>
 </html>
